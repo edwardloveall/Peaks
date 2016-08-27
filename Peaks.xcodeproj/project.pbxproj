@@ -13,6 +13,8 @@
 		39DBE30D1D722ED4008E453D /* PerlinGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE30C1D722ED4008E453D /* PerlinGenerator.swift */; };
 		39DBE30F1D722FAA008E453D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE30E1D722FAA008E453D /* MainViewController.swift */; };
 		39DBE3111D723055008E453D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3101D723055008E453D /* MainView.swift */; };
+		39DBE3131D72325F008E453D /* LandscapeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3121D72325F008E453D /* LandscapeGenerator.swift */; };
+		39DBE3151D7234E9008E453D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3141D7234E9008E453D /* Point.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		39DBE30C1D722ED4008E453D /* PerlinGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerlinGenerator.swift; sourceTree = "<group>"; };
 		39DBE30E1D722FAA008E453D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		39DBE3101D723055008E453D /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		39DBE3121D72325F008E453D /* LandscapeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeGenerator.swift; sourceTree = "<group>"; };
+		39DBE3141D7234E9008E453D /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				39DBE3031D722EAA008E453D /* MainMenu.xib */,
 				39DBE3061D722EAA008E453D /* Info.plist */,
 				39DBE30C1D722ED4008E453D /* PerlinGenerator.swift */,
+				39DBE3121D72325F008E453D /* LandscapeGenerator.swift */,
+				39DBE3141D7234E9008E453D /* Point.swift */,
 			);
 			path = Peaks;
 			sourceTree = "<group>";
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				39DBE30F1D722FAA008E453D /* MainViewController.swift in Sources */,
+				39DBE3131D72325F008E453D /* LandscapeGenerator.swift in Sources */,
+				39DBE3151D7234E9008E453D /* Point.swift in Sources */,
 				39DBE3111D723055008E453D /* MainView.swift in Sources */,
 				39DBE3001D722EAA008E453D /* AppDelegate.swift in Sources */,
 				39DBE30D1D722ED4008E453D /* PerlinGenerator.swift in Sources */,

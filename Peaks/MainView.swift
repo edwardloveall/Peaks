@@ -9,9 +9,10 @@
 import Cocoa
 
 class MainView: NSView {
+  let gridSize = 10
+
   override func drawRect(dirtyRect: NSRect) {
     super.drawRect(dirtyRect)
-    NSColor.redColor().setFill()
-    NSBezierPath.fillRect(bounds)
+    LandscapeGenerator(bounds: bounds, tileSize: gridSize).draw()
   }
 }
