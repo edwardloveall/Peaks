@@ -8,15 +8,14 @@ class LandscapeGenerator {
   let yPoints: Int
   var points = [[Point]]()
 
-  init(bounds: CGRect, tileSize: Int) {
+  init(bounds: CGRect, tileSize: CGSize) {
     self.bounds = bounds
-    self.tileSize = CGSize(width: tileSize, height: tileSize)
-    self.xPoints = Int(bounds.width / CGFloat(tileSize))
-    self.yPoints = Int(bounds.height / CGFloat(tileSize))
-    setup()
+    self.tileSize = tileSize
+    self.xPoints = Int(bounds.width / tileSize.width)
+    self.yPoints = Int(bounds.height / tileSize.height)
   }
 
-  func setup() {
+  func generate() -> [[Point]] {
     let perlin = PerlinGenerator()
     perlin.octaves = 4
     for y in 0..<yPoints {
@@ -27,23 +26,15 @@ class LandscapeGenerator {
         let height = perlin.perlinNoise(floatX * noiseScale,
                                         y: floatY * noiseScale,
                                         z: 0,
-                                        t: 0) + 1 * 0.5
+                                        t: 0)
+        let scaledHeight = (height + 1.1) / 2.2
         let point = Point(x: x * Int(tileSize.width),
                          y: y * Int(tileSize.height),
-                         height: height)
+                         height: scaledHeight)
         points[y].append(point)
       }
     }
-  }
 
-  func draw() {
-    for col in points {
-      for point in col {
-        let origin = CGPoint(x: point.x, y: point.y)
-        let rect = CGRect(origin: origin, size: tileSize)
-        NSColor(calibratedWhite: CGFloat(point.height), alpha: 1).setFill()
-        NSBezierPath.fillRect(rect)
-      }
-    }
+    return points
   }
 }

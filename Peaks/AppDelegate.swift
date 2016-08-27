@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var window: NSWindow!
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
+    window.setContentSize(NSSize(width: 600, height: 600))
   }
 }
 
