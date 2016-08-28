@@ -17,6 +17,8 @@
 		39DBE3151D7234E9008E453D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3141D7234E9008E453D /* Point.swift */; };
 		39DBE3171D7259F8008E453D /* PeakFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3161D7259F8008E453D /* PeakFinder.swift */; };
 		39DBE3191D72767B008E453D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3181D72767B008E453D /* Array.swift */; };
+		39DBE31E1D7345EB008E453D /* PointGrouper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE31D1D7345EB008E453D /* PointGrouper.swift */; };
+		39DBE3201D736852008E453D /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE31F1D736852008E453D /* CGFloat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		39DBE3141D7234E9008E453D /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		39DBE3161D7259F8008E453D /* PeakFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakFinder.swift; sourceTree = "<group>"; };
 		39DBE3181D72767B008E453D /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		39DBE31D1D7345EB008E453D /* PointGrouper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointGrouper.swift; sourceTree = "<group>"; };
+		39DBE31F1D736852008E453D /* CGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 				39DBE3031D722EAA008E453D /* MainMenu.xib */,
 				39DBE3061D722EAA008E453D /* Info.plist */,
 				39DBE30C1D722ED4008E453D /* PerlinGenerator.swift */,
+				39DBE31D1D7345EB008E453D /* PointGrouper.swift */,
 				39DBE3121D72325F008E453D /* LandscapeGenerator.swift */,
 				39DBE3161D7259F8008E453D /* PeakFinder.swift */,
 				39DBE3141D7234E9008E453D /* Point.swift */,
@@ -83,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				39DBE3181D72767B008E453D /* Array.swift */,
+				39DBE31F1D736852008E453D /* CGFloat.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -157,6 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39DBE3201D736852008E453D /* CGFloat.swift in Sources */,
 				39DBE30F1D722FAA008E453D /* MainViewController.swift in Sources */,
 				39DBE3131D72325F008E453D /* LandscapeGenerator.swift in Sources */,
 				39DBE3151D7234E9008E453D /* Point.swift in Sources */,
@@ -165,6 +172,7 @@
 				39DBE3191D72767B008E453D /* Array.swift in Sources */,
 				39DBE30D1D722ED4008E453D /* PerlinGenerator.swift in Sources */,
 				39DBE3171D7259F8008E453D /* PeakFinder.swift in Sources */,
+				39DBE31E1D7345EB008E453D /* PointGrouper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

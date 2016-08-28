@@ -17,18 +17,28 @@ class MainView: NSView {
     let landscape = LandscapeGenerator(bounds: bounds, tileSize: gridSize)
     points = landscape.generate()
 
-    let peakFinder = PeakFinder(points: points)
-    peakFinder.findPeaks()
+    let finder = PeakFinder(points: points)
+    finder.findPeaks()
+
+    let grouper = PointGrouper(points: points)
+    let groups = grouper.groupPoints(above: 0.5)
 
     for col in points {
       for point in col {
         let origin = CGPoint(x: point.x, y: point.y)
         let rect = CGRect(origin: origin, size: gridSize)
-        if point.peak {
-          NSColor(calibratedRed: CGFloat(point.height), green: 0, blue: 0, alpha: 1).setFill()
-        } else {
-          NSColor(calibratedWhite: CGFloat(point.height), alpha: 1).setFill()
-        }
+        NSColor(calibratedWhite: CGFloat(point.height), alpha: 1).setFill()
+        NSBezierPath.fillRect(rect)
+      }
+    }
+
+    for group in groups {
+      let color = NSColor(calibratedHue: CGFloat.random(), saturation: 1, brightness: 0.5, alpha: 1)
+      for position in group {
+        let point = points[position.y][position.x]
+        color.highlightWithLevel(CGFloat(point.height))?.setFill()
+        let origin = CGPoint(x: point.x, y: point.y)
+        let rect = CGRect(origin: origin, size: gridSize)
         NSBezierPath.fillRect(rect)
       }
     }
