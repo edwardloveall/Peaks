@@ -15,6 +15,8 @@
 		39DBE3111D723055008E453D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3101D723055008E453D /* MainView.swift */; };
 		39DBE3131D72325F008E453D /* LandscapeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3121D72325F008E453D /* LandscapeGenerator.swift */; };
 		39DBE3151D7234E9008E453D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3141D7234E9008E453D /* Point.swift */; };
+		39DBE3171D7259F8008E453D /* PeakFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3161D7259F8008E453D /* PeakFinder.swift */; };
+		39DBE3191D72767B008E453D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3181D72767B008E453D /* Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		39DBE3101D723055008E453D /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		39DBE3121D72325F008E453D /* LandscapeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeGenerator.swift; sourceTree = "<group>"; };
 		39DBE3141D7234E9008E453D /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		39DBE3161D7259F8008E453D /* PeakFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakFinder.swift; sourceTree = "<group>"; };
+		39DBE3181D72767B008E453D /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +72,19 @@
 				39DBE3061D722EAA008E453D /* Info.plist */,
 				39DBE30C1D722ED4008E453D /* PerlinGenerator.swift */,
 				39DBE3121D72325F008E453D /* LandscapeGenerator.swift */,
+				39DBE3161D7259F8008E453D /* PeakFinder.swift */,
 				39DBE3141D7234E9008E453D /* Point.swift */,
+				39DBE31A1D72767F008E453D /* Extensions */,
 			);
 			path = Peaks;
+			sourceTree = "<group>";
+		};
+		39DBE31A1D72767F008E453D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				39DBE3181D72767B008E453D /* Array.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +162,9 @@
 				39DBE3151D7234E9008E453D /* Point.swift in Sources */,
 				39DBE3111D723055008E453D /* MainView.swift in Sources */,
 				39DBE3001D722EAA008E453D /* AppDelegate.swift in Sources */,
+				39DBE3191D72767B008E453D /* Array.swift in Sources */,
 				39DBE30D1D722ED4008E453D /* PerlinGenerator.swift in Sources */,
+				39DBE3171D7259F8008E453D /* PeakFinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
