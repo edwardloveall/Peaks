@@ -25,29 +25,28 @@ class PointGrouper {
   }
 
   func groupPoints(above above: Double) -> [[PointPosition]] {
-    groups = peaks.map { peak in
-      fillPeak(peak)
+    for (index, peak) in peaks.enumerate() {
+      fillPeak(peak, forPeakIndex: index)
     }
     return groups
   }
 
-  func fillPeak(peak: PointPosition) -> [PointPosition] {
-    var group = [PointPosition]()
-    fill(peak.x, y: peak.y, group: &group)
-    return group
+  func fillPeak(peak: PointPosition, forPeakIndex index: Int) {
+    groups.append([PointPosition]())
+    fill(peak.x, y: peak.y, groupIndex: index)
   }
 
-  func fill(x: Int, y: Int, inout group: [PointPosition]) {
+  func fill(x: Int, y: Int, groupIndex index: Int) {
     guard let col = points[safe: y], let point = col[safe: x] else { return }
     let position = PointPosition(x: x, y: y)
-    if group.contains(position) { return }
+    if groups[index].contains(position) { return }
     if point.height < 0.5 { return }
 
-    group.append(position)
+    groups[index].append(position)
 
-    fill(x + 1, y: y,     group: &group)
-    fill(x - 1, y: y,     group: &group)
-    fill(x,     y: y + 1, group: &group)
-    fill(x,     y: y - 1, group: &group)
+    fill(x + 1, y: y,     groupIndex: index)
+    fill(x - 1, y: y,     groupIndex: index)
+    fill(x,     y: y + 1, groupIndex: index)
+    fill(x,     y: y - 1, groupIndex: index)
   }
 }
