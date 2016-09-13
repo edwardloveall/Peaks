@@ -315,6 +315,7 @@
 				39DBE30B1D722EAA008E453D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
