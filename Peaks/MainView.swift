@@ -13,6 +13,7 @@ class MainView: NSView {
   var points = [[Point]]()
 
   override func drawRect(dirtyRect: NSRect) {
+    let t0 = NSDate.timeIntervalSinceReferenceDate()
     super.drawRect(dirtyRect)
     let landscape = LandscapeGenerator(bounds: bounds, tileSize: gridSize)
     points = landscape.generate()
@@ -43,6 +44,9 @@ class MainView: NSView {
         NSBezierPath.fillRect(rect)
       }
     }
+
+    let t1 = NSDate.timeIntervalSinceReferenceDate()
+    Swift.print(t1 - t0)
   }
 
   override func mouseDown(theEvent: NSEvent) {

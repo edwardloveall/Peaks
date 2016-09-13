@@ -13,8 +13,11 @@ class PointGrouper {
   }
 
   func groupPoints(above above: Double) -> [[Point]] {
-    for (index, peak) in peaks.enumerate() {
-      fillPeak(peak, forPeakIndex: index)
+    for peak in peaks {
+      if peak.grouped {
+        continue
+      }
+      fillPeak(peak, forPeakIndex: groups.endIndex)
     }
     return groups
   }
@@ -30,8 +33,10 @@ class PointGrouper {
     guard let col = points[safe: y], let point = col[safe: x] else { return }
     if groups[index].contains(point) { return }
     if point.height < 0.5 { return }
+    if point.grouped { return }
 
     groups[index].append(point)
+    point.grouped = true
 
     fill(x: cgx + 1, y: cgy,     groupIndex: index)
     fill(x: cgx - 1, y: cgy,     groupIndex: index)
