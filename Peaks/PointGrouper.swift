@@ -1,52 +1,41 @@
-struct PointPosition: Equatable {
-  let x: Int
-  let y: Int
-}
-
-func ==(lhs: PointPosition, rhs: PointPosition) -> Bool {
-  return lhs.x == rhs.x && lhs.y == rhs.y
-}
+import Cocoa
 
 class PointGrouper {
   let points: [[Point]]
-  var peaks = [PointPosition]()
-  var groups = [[PointPosition]]()
+  var peaks = [Point]()
+  var groups = [[Point]]()
 
   init(points: [[Point]]) {
     self.points = points
-    for (y, col) in points.enumerate() {
-      for (x, point) in col.enumerate() {
-        if point.peak {
-          let peak = PointPosition(x: x, y: y)
-          peaks.append(peak)
-        }
-      }
+    self.peaks = self.points.flatten().filter {
+      $0.peak
     }
   }
 
-  func groupPoints(above above: Double) -> [[PointPosition]] {
+  func groupPoints(above above: Double) -> [[Point]] {
     for (index, peak) in peaks.enumerate() {
       fillPeak(peak, forPeakIndex: index)
     }
     return groups
   }
 
-  func fillPeak(peak: PointPosition, forPeakIndex index: Int) {
-    groups.append([PointPosition]())
-    fill(peak.x, y: peak.y, groupIndex: index)
+  func fillPeak(peak: Point, forPeakIndex index: Int) {
+    groups.append([Point]())
+    fill(x: peak.x, y: peak.y, groupIndex: index)
   }
 
-  func fill(x: Int, y: Int, groupIndex index: Int) {
+  func fill(x cgx: CGFloat, y cgy: CGFloat, groupIndex index: Int) {
+    let x = Int(cgx)
+    let y = Int(cgy)
     guard let col = points[safe: y], let point = col[safe: x] else { return }
-    let position = PointPosition(x: x, y: y)
-    if groups[index].contains(position) { return }
+    if groups[index].contains(point) { return }
     if point.height < 0.5 { return }
 
-    groups[index].append(position)
+    groups[index].append(point)
 
-    fill(x + 1, y: y,     groupIndex: index)
-    fill(x - 1, y: y,     groupIndex: index)
-    fill(x,     y: y + 1, groupIndex: index)
-    fill(x,     y: y - 1, groupIndex: index)
+    fill(x: cgx + 1, y: cgy,     groupIndex: index)
+    fill(x: cgx - 1, y: cgy,     groupIndex: index)
+    fill(x: cgx,     y: cgy + 1, groupIndex: index)
+    fill(x: cgx,     y: cgy - 1, groupIndex: index)
   }
 }
