@@ -27,7 +27,7 @@ class PerlinGenerator {
   init(){
     permut = []
     for _ in (0..<PERMUTATION_SIZE) {
-      permut.append(Int(rand() & 0xff))
+      permut.append(Int(arc4random() & 0xff))
     }
     octaves = 1
     persistence = 1.0
