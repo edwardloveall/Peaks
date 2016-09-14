@@ -28,19 +28,37 @@ class PointGrouper {
   }
 
   func fill(x cgx: CGFloat, y cgy: CGFloat, groupIndex index: Int) {
-    let x = Int(cgx)
-    let y = Int(cgy)
+    var pointQueue = [Point]()
+
+    var x = Int(cgx)
+    var y = Int(cgy)
     guard let col = points[safe: y], let point = col[safe: x] else { return }
-    if groups[index].contains(point) { return }
-    if point.height < 0.5 { return }
-    if point.grouped { return }
+    pointQueue.append(point)
 
-    groups[index].append(point)
-    point.grouped = true
+    while !pointQueue.isEmpty {
+      let point = pointQueue.removeFirst()
+      if point.height < 0.5 { continue }
+      if point.grouped { continue }
+      x = Int(point.x)
+      y = Int(point.y)
+      groups[index].append(point)
+      point.grouped = true
 
-    fill(x: cgx + 1, y: cgy,     groupIndex: index)
-    fill(x: cgx - 1, y: cgy,     groupIndex: index)
-    fill(x: cgx,     y: cgy + 1, groupIndex: index)
-    fill(x: cgx,     y: cgy - 1, groupIndex: index)
+      if let rightCol = points[safe: y], let right = rightCol[safe: x + 1] {
+        pointQueue.append(right)
+      }
+
+      if let leftCol = points[safe: y], let left = leftCol[safe: x - 1] {
+        pointQueue.append(left)
+      }
+
+      if let upCol = points[safe: y + 1], let up = upCol[safe: x] {
+        pointQueue.append(up)
+      }
+
+      if let downCol = points[safe: y - 1], let down = downCol[safe: x] {
+        pointQueue.append(down)
+      }
+    }
   }
 }
