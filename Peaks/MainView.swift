@@ -46,12 +46,15 @@ class MainView: NSView {
 
     for group in groups {
       let color = NSColor(calibratedHue: CGFloat.random(), saturation: 1, brightness: 0.5, alpha: 1)
-      for point in group {
-        color.highlightWithLevel(point.height)?.setFill()
-        let origin = CGPoint(x: point.x * gridSize.width,
-                             y: point.y * gridSize.width)
-        let rect = CGRect(origin: origin, size: gridSize)
-        NSBezierPath.fillRect(rect)
+        for col in group {
+          for point in col {
+            guard let point = point else { continue }
+            color.highlightWithLevel(point.height)?.setFill()
+            let origin = CGPoint(x: point.x * gridSize.width,
+                                 y: point.y * gridSize.width)
+            let rect = CGRect(origin: origin, size: gridSize)
+            NSBezierPath.fillRect(rect)
+        }
       }
     }
 
