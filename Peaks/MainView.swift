@@ -15,7 +15,17 @@ class MainView: NSView {
   override func drawRect(dirtyRect: NSRect) {
     let t0 = NSDate.timeIntervalSinceReferenceDate()
     super.drawRect(dirtyRect)
-    let landscape = LandscapeGenerator(bounds: bounds, tileSize: gridSize)
+    var seed: Int32
+
+    if let int32Seed = Int32(Process.arguments[1]) {
+      seed = int32Seed
+    } else {
+      let date = NSDate()
+      let calendar = NSCalendar.currentCalendar()
+      seed = Int32(calendar.component(.Nanosecond, fromDate: date))
+    }
+
+    let landscape = LandscapeGenerator(bounds: bounds, tileSize: gridSize, seed: seed)
     points = landscape.generate()
 
     let finder = PeakFinder(points: points)
