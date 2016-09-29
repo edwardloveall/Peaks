@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39CC83B81D89EC5C0074F182 /* GroupWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC83B71D89EC5C0074F182 /* GroupWrapper.swift */; };
 		39DBE3001D722EAA008E453D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE2FF1D722EAA008E453D /* AppDelegate.swift */; };
 		39DBE3021D722EAA008E453D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39DBE3011D722EAA008E453D /* Assets.xcassets */; };
 		39DBE3051D722EAA008E453D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39DBE3031D722EAA008E453D /* MainMenu.xib */; };
+		39DBE30D1D722ED4008E453D /* PerlinGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE30C1D722ED4008E453D /* PerlinGenerator.swift */; };
 		39DBE30F1D722FAA008E453D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE30E1D722FAA008E453D /* MainViewController.swift */; };
 		39DBE3111D723055008E453D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3101D723055008E453D /* MainView.swift */; };
 		39DBE3131D72325F008E453D /* LandscapeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBE3121D72325F008E453D /* LandscapeGenerator.swift */; };
@@ -21,11 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39CC83B71D89EC5C0074F182 /* GroupWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupWrapper.swift; sourceTree = "<group>"; };
 		39DBE2FC1D722EAA008E453D /* Peaks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peaks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DBE2FF1D722EAA008E453D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39DBE3011D722EAA008E453D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39DBE3041D722EAA008E453D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		39DBE3061D722EAA008E453D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39DBE30C1D722ED4008E453D /* PerlinGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerlinGenerator.swift; sourceTree = "<group>"; };
 		39DBE30E1D722FAA008E453D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		39DBE3101D723055008E453D /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		39DBE3121D72325F008E453D /* LandscapeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeGenerator.swift; sourceTree = "<group>"; };
@@ -72,9 +76,11 @@
 				39DBE3011D722EAA008E453D /* Assets.xcassets */,
 				39DBE3031D722EAA008E453D /* MainMenu.xib */,
 				39DBE3061D722EAA008E453D /* Info.plist */,
-				39DBE31D1D7345EB008E453D /* PointGrouper.swift */,
+				39DBE30C1D722ED4008E453D /* PerlinGenerator.swift */,
 				39DBE3121D72325F008E453D /* LandscapeGenerator.swift */,
 				39DBE3161D7259F8008E453D /* PeakFinder.swift */,
+				39DBE31D1D7345EB008E453D /* PointGrouper.swift */,
+				39CC83B71D89EC5C0074F182 /* GroupWrapper.swift */,
 				39DBE3141D7234E9008E453D /* Point.swift */,
 				39DBE31A1D72767F008E453D /* Extensions */,
 			);
@@ -117,7 +123,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Edward Loveall";
 				TargetAttributes = {
 					39DBE2FB1D722EAA008E453D = {
@@ -164,10 +170,12 @@
 				39DBE3201D736852008E453D /* CGFloat.swift in Sources */,
 				39DBE30F1D722FAA008E453D /* MainViewController.swift in Sources */,
 				39DBE3131D72325F008E453D /* LandscapeGenerator.swift in Sources */,
+				39CC83B81D89EC5C0074F182 /* GroupWrapper.swift in Sources */,
 				39DBE3151D7234E9008E453D /* Point.swift in Sources */,
 				39DBE3111D723055008E453D /* MainView.swift in Sources */,
 				39DBE3001D722EAA008E453D /* AppDelegate.swift in Sources */,
 				39DBE3191D72767B008E453D /* Array.swift in Sources */,
+				39DBE30D1D722ED4008E453D /* PerlinGenerator.swift in Sources */,
 				39DBE3171D7259F8008E453D /* PeakFinder.swift in Sources */,
 				39DBE31E1D7345EB008E453D /* PointGrouper.swift in Sources */,
 			);
@@ -201,8 +209,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -246,8 +256,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -266,6 +278,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
