@@ -23,6 +23,7 @@ class MainView: NSView {
       let date = NSDate()
       let calendar = NSCalendar.currentCalendar()
       seed = Int32(calendar.component(.Nanosecond, fromDate: date))
+      Swift.print("random seed: \(seed)")
     }
 
     let landscape = LandscapeGenerator(bounds: bounds, tileSize: gridSize, seed: seed)
@@ -44,9 +45,24 @@ class MainView: NSView {
       }
     }
 
-    for group in groups {
+    for (index, group) in groups.enumerate() {
+      NSColor.blueColor().setFill()
+      for col in group {
+        for possiblePoint in col {
+          guard let point = possiblePoint else { continue }
+          let origin = CGPoint(x: point.x * gridSize.width,
+                               y: point.y * gridSize.height)
+          let rect = CGRect(origin: origin, size: gridSize)
+          NSBezierPath.fillRect(rect)
+        }
+      }
+
       let color = NSColor(calibratedHue: CGFloat.random(), saturation: 1, brightness: 0.5, alpha: 1)
       guard let wrapper = GroupWrapper(group: group) else { continue }
+      Swift.print(index)
+      if index == 21 {
+        Swift.print("uh oh")
+      }
       let edge = wrapper.wrap()
       for point in edge {
         color.highlightWithLevel(point.height)?.setFill()
