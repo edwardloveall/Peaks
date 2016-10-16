@@ -13,6 +13,10 @@ class GroupWrapper {
     (x: 1,  y: 0),
     (x: 1,  y: 1)
   ]
+  var outerPoints: [Point]
+  var currentIndex: (x: Int, y: Int)
+  var directionIndex: Int
+  var direction: (x: Int, y: Int)
 
   init?(group: [[Point?]]) {
     self.group = group
@@ -26,14 +30,14 @@ class GroupWrapper {
       break
     }
     startIndex = (x: 0, y: y)
+
+    outerPoints = [Point]()
+    currentIndex = startIndex
+    directionIndex = 0
+    direction = (x: 0, y: 0)
   }
 
   func wrap() -> [Point] {
-    var outerPoints = [Point]()
-    var currentIndex = startIndex
-    var directionIndex = 0
-    var direction: (x: Int, y: Int)
-
     while currentIndex != startIndex || outerPoints.isEmpty {
       direction = directions[directionIndex % directions.count]
       currentIndex = (x: currentIndex.x + direction.x,
@@ -48,9 +52,9 @@ class GroupWrapper {
       }
 
       outerPoints.append(neighbor)
-      print("outerPoints: \(outerPoints.count)")
 
       directionIndex += 6
+      return outerPoints
     }
     return outerPoints
   }
@@ -61,4 +65,3 @@ class GroupWrapper {
     return atan(dy / dx)
   }
 }
-

@@ -11,9 +11,10 @@ import Cocoa
 class MainView: NSView {
   let gridSize: CGSize = CGSize(width: 10, height: 10)
   var points = [[Point]]()
+  var wrappers = [GroupWrapper]()
+  var edges = [[Point]]()
 
   override func drawRect(dirtyRect: NSRect) {
-    let t0 = NSDate.timeIntervalSinceReferenceDate()
     super.drawRect(dirtyRect)
     var seed: Int32
 
@@ -45,24 +46,30 @@ class MainView: NSView {
       }
     }
 
-    for (index, group) in groups.enumerate() {
-      NSColor.blueColor().setFill()
+    if wrappers.isEmpty {
+      for group in groups {
+        guard let wrapper = GroupWrapper(group: group) else { continue }
+        wrappers.append(wrapper)
+      }
+    }
+
+    for group in groups {
+      let color = NSColor.blueColor()
       for col in group {
         for possiblePoint in col {
           guard let point = possiblePoint else { continue }
           let origin = CGPoint(x: point.x * gridSize.width,
                                y: point.y * gridSize.height)
           let rect = CGRect(origin: origin, size: gridSize)
+          color.highlightWithLevel(point.height / 2)?.setFill()
           NSBezierPath.fillRect(rect)
         }
       }
+    }
 
+    for (index, wrapper) in wrappers.enumerate() {
       let color = NSColor(calibratedHue: CGFloat.random(), saturation: 1, brightness: 0.5, alpha: 1)
-      guard let wrapper = GroupWrapper(group: group) else { continue }
-      Swift.print(index)
-      if index == 21 {
-        Swift.print("uh oh")
-      }
+
       let edge = wrapper.wrap()
       for point in edge {
         color.highlightWithLevel(point.height)?.setFill()
@@ -72,9 +79,6 @@ class MainView: NSView {
         NSBezierPath.fillRect(rect)
       }
     }
-
-    let t1 = NSDate.timeIntervalSinceReferenceDate()
-    Swift.print(t1 - t0)
   }
 
   override func mouseDown(theEvent: NSEvent) {
