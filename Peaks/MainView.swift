@@ -10,13 +10,29 @@ import Cocoa
 
 class MainView: NSView {
   let gridSize: CGSize = CGSize(width: 10, height: 10)
-  var points = [[Point]]()
   var wrappers = [GroupWrapper]()
   var edges = [[Point]]()
+  let heights = [
+    [0,   0,    0,    0,   0],
+    [0.4, 0.5,  0.55, 0.6, 0],
+    [0,   0.65, 1,    0.7, 0, 0],
+    [0,   0.8,  0.85, 0.9, 0],
+    [0,   0,    0,    0,   0]
+  ]
+  var points = [[Point]]()
+  var seed: Int32 = 0
 
-  override func drawRect(dirtyRect: NSRect) {
-    super.drawRect(dirtyRect)
-    var seed: Int32
+  override init(frame frameRect: NSRect) {
+    super.init(frame: frameRect)
+  }
+  
+  required init?(coder: NSCoder) {
+    for (y, row) in heights.enumerate() {
+      points.append([Point]())
+      for (x, height) in row.enumerate() {
+        points[y].append(Point(x: CGFloat(x), y: CGFloat(y), height: CGFloat(height)))
+      }
+    }
 
     if let int32Seed = Int32(Process.arguments[1]) {
       seed = int32Seed
@@ -26,6 +42,11 @@ class MainView: NSView {
       seed = Int32(calendar.component(.Nanosecond, fromDate: date))
       Swift.print("random seed: \(seed)")
     }
+    super.init(coder: coder)
+  }
+
+  override func drawRect(dirtyRect: NSRect) {
+    super.drawRect(dirtyRect)
 
     let landscape = LandscapeGenerator(bounds: bounds, tileSize: gridSize, seed: seed)
     points = landscape.generate()
@@ -36,8 +57,8 @@ class MainView: NSView {
     let grouper = PointGrouper(points: points)
     let groups = grouper.groupPoints(above: 0.5)
 
-    for col in points {
-      for point in col {
+    for row in points {
+      for point in row {
         let origin = CGPoint(x: point.x * gridSize.width,
                              y: point.y * gridSize.width)
         let rect = CGRect(origin: origin, size: gridSize)
@@ -55,8 +76,8 @@ class MainView: NSView {
 
     for group in groups {
       let color = NSColor.blueColor()
-      for col in group {
-        for possiblePoint in col {
+      for row in group {
+        for possiblePoint in row {
           guard let point = possiblePoint else { continue }
           let origin = CGPoint(x: point.x * gridSize.width,
                                y: point.y * gridSize.height)
@@ -69,6 +90,7 @@ class MainView: NSView {
 
     for (index, wrapper) in wrappers.enumerate() {
       let color = NSColor(calibratedHue: CGFloat.random(), saturation: 1, brightness: 0.5, alpha: 1)
+//      let color = NSColor.redColor()
 
       let edge = wrapper.wrap()
       for point in edge {

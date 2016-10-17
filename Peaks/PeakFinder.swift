@@ -8,8 +8,8 @@ class PeakFinder {
   }
 
   func findPeaks() {
-    for (y, col) in points.enumerate() {
-      for (x, point) in col.enumerate() {
+    for (x, row) in points.enumerate() {
+      for (y, point) in row.enumerate() {
         if isPeakAt(x, y: y) {
           point.peak = true
         }
@@ -18,13 +18,13 @@ class PeakFinder {
   }
 
   func isPeakAt(x: Int, y: Int) -> Bool {
-    let point = points[y][x]
+    let point = points[x][y]
 
-    for colIndex in (y - 1...y + 1) {
-      for rowIndex in (x - 1...x + 1) {
+    for rowIndex in (x - 1...x + 1) {
+      for colIndex in (y - 1...y + 1) {
         guard
-          let row = points[safe: colIndex],
-          let other = row[safe: rowIndex]
+          let row = points[safe: rowIndex],
+          let other = row[safe: colIndex]
         else {
           continue
         }

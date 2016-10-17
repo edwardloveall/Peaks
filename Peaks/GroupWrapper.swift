@@ -13,8 +13,8 @@ class GroupWrapper {
     (x: 1,  y: 0),
     (x: 1,  y: 1)
   ]
-  var outerPoints: [Point]
-  var currentIndex: (x: Int, y: Int)
+  var outerPoints = [Point]()
+  var currentEdgeIndex: (x: Int, y: Int)
   var directionIndex: Int
   var direction: (x: Int, y: Int)
 
@@ -22,29 +22,47 @@ class GroupWrapper {
     self.group = group
     let flatGroup = group.flatten().flatMap({ $0 })
     if flatGroup.isEmpty { return nil }
-    let firstColumn = group[0]
-    var y = 0
-    for (index, point) in firstColumn.enumerate() {
-      guard let _ = point else { continue }
-      y = index
-      break
-    }
-    startIndex = (x: 0, y: y)
+    var leftestPointX = CGFloat.infinity
+    var leftestColumnIndex = Int.max
 
-    outerPoints = [Point]()
-    currentIndex = startIndex
+    for row in group {
+      for (xIndex, point) in row.enumerate() {
+        if let point = point {
+          if point.x < leftestPointX {
+            leftestPointX = point.x
+            leftestColumnIndex = xIndex
+          }
+        }
+      }
+    }
+
+    let leftColumnPoints = flatGroup.filter { $0.x == leftestPointX }
+    var topPointIndexInLeftestColumn = 0
+    for (index, _) in leftColumnPoints.enumerate() {
+      if index > topPointIndexInLeftestColumn {
+        topPointIndexInLeftestColumn = index
+      }
+    }
+
+    startIndex = (x: leftestColumnIndex, y: topPointIndexInLeftestColumn)
+    currentEdgeIndex = startIndex
     directionIndex = 0
     direction = (x: 0, y: 0)
+    guard let startPoint = group[startIndex.y][startIndex.x] else {
+      return nil
+    }
+    outerPoints.append(startPoint)
   }
 
   func wrap() -> [Point] {
-    while currentIndex != startIndex || outerPoints.isEmpty {
+    while true {
       direction = directions[directionIndex % directions.count]
-      currentIndex = (x: currentIndex.x + direction.x,
-                      y: currentIndex.y + direction.y)
+      let possibleEdge = (x: currentEdgeIndex.x + direction.x,
+                          y: currentEdgeIndex.y + direction.y)
+      if possibleEdge == startIndex { break }
       guard
-        let col = group[safe: currentIndex.y],
-        let optional_neighbor = col[safe: currentIndex.x],
+        let row = group[safe: possibleEdge.y],
+        let optional_neighbor = row[safe: possibleEdge.x],
         let neighbor = optional_neighbor
       else {
         directionIndex += 1
@@ -52,6 +70,7 @@ class GroupWrapper {
       }
 
       outerPoints.append(neighbor)
+      currentEdgeIndex = possibleEdge
 
       directionIndex += 6
       return outerPoints

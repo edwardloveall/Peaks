@@ -62,13 +62,13 @@ class PointGrouper {
     let limits = groupFrame(group)
     let height = Int(limits.height) + 1
     let width = Int(limits.width) + 1
-    let column = Array<Point?>(count: height, repeatedValue: .None)
-    var arrangedGroup = [[Point?]](count: width, repeatedValue: column)
+    let row = Array<Point?>(count: width, repeatedValue: .None)
+    var arrangedGroup = [[Point?]](count: height, repeatedValue: row)
 
     for point in group {
       let x = Int(point.x - limits.minX)
       let y = Int(point.y - limits.minY)
-      arrangedGroup[x][y] = point
+      arrangedGroup[y][x] = point
     }
 
     return arrangedGroup
