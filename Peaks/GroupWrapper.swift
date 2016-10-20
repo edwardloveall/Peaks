@@ -46,7 +46,7 @@ class GroupWrapper {
 
     startIndex = (x: leftestColumnIndex, y: topPointIndexInLeftestColumn)
     currentEdgeIndex = startIndex
-    directionIndex = 0
+    directionIndex = 4
     direction = (x: 0, y: 0)
     guard let startPoint = group[startIndex.y][startIndex.x] else {
       return nil

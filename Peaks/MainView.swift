@@ -88,9 +88,8 @@ class MainView: NSView {
       }
     }
 
-    for (index, wrapper) in wrappers.enumerate() {
-      let color = NSColor(calibratedHue: CGFloat.random(), saturation: 1, brightness: 0.5, alpha: 1)
-//      let color = NSColor.redColor()
+    for wrapper in wrappers {
+      let color = NSColor.redColor()
 
       let edge = wrapper.wrap()
       for point in edge {
